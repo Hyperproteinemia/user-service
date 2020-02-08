@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tk.laurenfrost.users</groupId>
-    <artifactId>user-service</artifactId>
+    <artifactId>users-service</artifactId>
     <version>1.0</version>
 
     <parent>
