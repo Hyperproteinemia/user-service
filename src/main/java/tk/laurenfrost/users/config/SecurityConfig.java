@@ -20,13 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity    // Enable security config. This annotation denotes config for spring security.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("userDetailsServiceImpl")
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     private JwtConfig jwtConfig;
 
+    public SecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
 
     @Override

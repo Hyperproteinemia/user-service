@@ -1,15 +1,14 @@
 package tk.laurenfrost.users.service;
 
-import tk.laurenfrost.users.entity.AppUser;
-import tk.laurenfrost.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import tk.laurenfrost.users.entity.AppUser;
+import tk.laurenfrost.users.repository.UserRepository;
 
 import java.util.List;
 
@@ -32,6 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.createAuthorityList("ROLE_USER");
 
-        return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
 }

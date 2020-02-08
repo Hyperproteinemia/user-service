@@ -22,7 +22,3 @@ security:
     keypass:
     jks-file: jwt.jks
     key-alias: jwtkey
-
-feign:
-  userclient:
-    url: http://laurenfrost.tk:8082
