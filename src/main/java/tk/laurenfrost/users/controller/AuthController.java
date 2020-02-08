@@ -1,5 +1,6 @@
 package tk.laurenfrost.users.controller;
 
+import org.springframework.web.bind.annotation.*;
 import tk.laurenfrost.users.entity.AppUser;
 import tk.laurenfrost.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +8,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @RestController
 @EnableAutoConfiguration
-public class UserController {
+public class AuthController {
 
     @Autowired
     UserService userService;
@@ -38,6 +36,18 @@ public class UserController {
                     .status(HttpStatus.OK)
                     .body("User created");
 
+        }
+    }
+
+    @GetMapping("/self")
+    public ResponseEntity<?> getSelfUser(@RequestHeader String username) {
+        AppUser user = userService.findUserByUsername(username);
+        if (user != null) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("unauthorized");
         }
     }
 }
