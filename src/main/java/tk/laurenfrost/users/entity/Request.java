@@ -1,5 +1,6 @@
 package tk.laurenfrost.users.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,9 +17,11 @@ public class Request {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     private AppUser to;
 
     @ManyToOne
+    @JsonBackReference
     private AppUser from;
 
     private Instant date;

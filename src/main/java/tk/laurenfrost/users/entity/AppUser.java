@@ -41,18 +41,17 @@ public class AppUser {
     private String city;
 
     @OneToMany(mappedBy = "user")
-    @JsonBackReference
     private Set<Contact> contacts;
 
     @Lob
     private byte[] avatar;
 
-    @JsonManagedReference
-    @OneToMany
+    @JsonBackReference
+    @OneToMany(mappedBy = "from")
     private Set<Request> out_request;
 
-    @JsonManagedReference
-    @OneToMany
+    @JsonBackReference
+    @OneToMany(mappedBy = "to")
     private Set<Request> in_request;
 
 }
