@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // allow all POST requests
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/signup").permitAll()
-                .antMatchers(HttpMethod.POST, "/self").permitAll()
+                .antMatchers(HttpMethod.GET, "/self").permitAll()
                 // any other requests must be authenticated
                 .anyRequest().authenticated();
     }
