@@ -1,13 +1,13 @@
 package tk.laurenfrost.users.controller;
 
-import org.springframework.web.bind.annotation.*;
-import tk.laurenfrost.users.entity.AppUser;
-import tk.laurenfrost.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import tk.laurenfrost.users.entity.AppUser;
+import tk.laurenfrost.users.service.UserService;
 
 import javax.validation.Valid;
 

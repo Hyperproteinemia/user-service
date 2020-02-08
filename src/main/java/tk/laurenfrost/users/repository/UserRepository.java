@@ -1,7 +1,7 @@
 package tk.laurenfrost.users.repository;
 
-import tk.laurenfrost.users.entity.AppUser;
 import org.springframework.data.repository.CrudRepository;
+import tk.laurenfrost.users.entity.AppUser;
 
 public interface UserRepository extends CrudRepository<AppUser, Long> {
 
