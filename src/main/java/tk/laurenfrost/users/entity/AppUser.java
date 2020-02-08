@@ -40,7 +40,7 @@ public class AppUser {
 
     private String city;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     @JsonBackReference
     private Set<Contact> contacts;
 

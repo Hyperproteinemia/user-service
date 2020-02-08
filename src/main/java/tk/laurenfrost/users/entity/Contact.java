@@ -15,6 +15,9 @@ public class Contact {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne
+    private AppUser user;
+
     @Enumerated(EnumType.STRING)
     ContactType type;
 
