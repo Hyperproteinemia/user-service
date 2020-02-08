@@ -42,7 +42,7 @@ public class ContactController {
         }
 
         boolean approved = false;
-        if (him.isPrivateContacts()) {
+        if (him.getPrivateContacts()) {
             Request request = requestService.getByUsers(you, him);
             if (request != null && request.isConfirmed()) {
                 approved = true;

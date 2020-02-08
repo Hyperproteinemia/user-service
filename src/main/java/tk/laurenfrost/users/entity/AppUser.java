@@ -1,16 +1,16 @@
 package tk.laurenfrost.users.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Data
 @Entity
@@ -43,7 +43,7 @@ public class AppUser {
     private String city;
 
     @ColumnDefault("true")
-    private boolean privateContacts;
+    private Boolean privateContacts;
 
     @Lob
     private byte[] avatar;
