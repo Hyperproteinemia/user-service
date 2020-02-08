@@ -31,10 +31,10 @@ public class AuthController {
                     .status(HttpStatus.CONFLICT)
                     .body("There is already a user registered with the username provided");
         } else {
-            userService.saveUser(user);
+            user = userService.saveUser(user);
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body("User created");
+                    .body(user);
 
         }
     }
