@@ -19,7 +19,7 @@ spring:
 security:
   jwt:
     secret: mySecretKey
-    keypass: authservice
+    keypass:
     jks-file: jwt.jks
     key-alias: jwtkey
 
