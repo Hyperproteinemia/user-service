@@ -17,11 +17,11 @@ public class Request {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private AppUser to;
 
     @ManyToOne
-    @JsonBackReference
+    //@JsonBackReference
     private AppUser from;
 
     private Instant date;

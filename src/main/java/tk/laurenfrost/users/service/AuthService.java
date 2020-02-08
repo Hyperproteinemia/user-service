@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import tk.laurenfrost.users.entity.AppUser;
 import tk.laurenfrost.users.repository.UserRepository;
 
-@Service("userService")
-public class UserService {
+@Service("authService")
+public class AuthService {
 
     @Autowired
     private UserRepository userRepository;

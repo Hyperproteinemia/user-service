@@ -1,6 +1,7 @@
 package tk.laurenfrost.users.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -46,11 +47,11 @@ public class AppUser {
     @Lob
     private byte[] avatar;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "from")
     private Set<Request> out_request;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "to")
     private Set<Request> in_request;
 

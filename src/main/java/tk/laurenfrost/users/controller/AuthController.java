@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import tk.laurenfrost.users.entity.AppUser;
-import tk.laurenfrost.users.service.UserService;
+import tk.laurenfrost.users.service.AuthService;
 
 import javax.validation.Valid;
 
@@ -16,11 +16,11 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    UserService userService;
+    AuthService authService;
 
     @PostMapping("/signup")
     public ResponseEntity<?> createNewUser(@RequestBody @Valid AppUser user, BindingResult bindingResult) {
-        AppUser userExists = userService.findUserByUsername(user.getUsername());
+        AppUser userExists = authService.findUserByUsername(user.getUsername());
         if (userExists != null) {
             bindingResult
                     .rejectValue("username", "error.user",
@@ -31,7 +31,7 @@ public class AuthController {
                     .status(HttpStatus.CONFLICT)
                     .body("There is already a user registered with the username provided");
         } else {
-            user = userService.saveUser(user);
+            user = authService.saveUser(user);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(user);
@@ -41,7 +41,7 @@ public class AuthController {
 
     @GetMapping("/self")
     public ResponseEntity<?> getSelfUser(@RequestHeader String username) {
-        AppUser user = userService.findUserByUsername(username);
+        AppUser user = authService.findUserByUsername(username);
         if (user != null) {
             return ResponseEntity
                     .status(HttpStatus.OK)
