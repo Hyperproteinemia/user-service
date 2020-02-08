@@ -21,9 +21,12 @@ public class AuthService {
         return userRepository.findByUsernameIgnoreCase(username);
     }
 
-    public AppUser saveUser(AppUser user) {
+    public AppUser createUser(AppUser user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
+    public AppUser updateUser(AppUser user) {
+        return userRepository.save(user);
+    }
 }

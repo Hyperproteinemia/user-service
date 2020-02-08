@@ -16,14 +16,11 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService  {
 
-
-
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         AppUser user = userRepository.findByUsernameIgnoreCase(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);

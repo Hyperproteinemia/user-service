@@ -31,7 +31,8 @@ public class AuthController {
                     .status(HttpStatus.CONFLICT)
                     .body("There is already a user registered with the username provided");
         } else {
-            user = authService.saveUser(user);
+
+            user = authService.createUser(user);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(user);
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @GetMapping("/self")
-    public ResponseEntity<?> getSelfUser(@RequestHeader String username) {
+    public ResponseEntity<?> getSelfUser(@RequestHeader(name = "username") String username) {
         AppUser user = authService.findUserByUsername(username);
         if (user != null) {
             return ResponseEntity

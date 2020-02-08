@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -41,18 +42,10 @@ public class AppUser {
 
     private String city;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Contact> contacts;
+    @ColumnDefault("true")
+    private boolean privateContacts;
 
     @Lob
     private byte[] avatar;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "from")
-    private Set<Request> out_request;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "to")
-    private Set<Request> in_request;
 
 }
