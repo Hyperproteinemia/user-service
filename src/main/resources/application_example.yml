@@ -19,7 +19,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: hinfantry2
-    password:
+    password: heavyInf123!
     properties:
       mail:
         smtp:
