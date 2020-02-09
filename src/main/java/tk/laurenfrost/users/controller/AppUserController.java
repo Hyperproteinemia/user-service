@@ -36,7 +36,7 @@ public class AppUserController {
         appUser.setUsername(username);
         AppUser user = authService.findUserByUsername(username);
         appUser.setPassword(user.getPassword());
-        appUser.setAvatar(user.getAvatar());
+        appUser.setAvatarPath(user.getAvatarPath());
 
         String email = appUser.getEmail();
         String name = appUser.getName();

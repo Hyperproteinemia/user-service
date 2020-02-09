@@ -35,13 +35,13 @@ public class AppUser {
 
 //    TODO: liked articles
 
+    @Lob
     private String bio;
 
     private String city;
 
     private Boolean privateContacts = false;
 
-    @Lob
-    private byte[] avatar;
+    private String avatarPath;
 
 }
