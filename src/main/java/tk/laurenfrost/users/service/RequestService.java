@@ -31,7 +31,7 @@ public class RequestService {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(request.getFrom().getEmail());
         msg.setSubject("Your request accepted!");
-        msg.setText(request.getFrom().getName() + " has accepted your request.");
+        msg.setText(request.getFrom().getUsername() + " has accepted your request.");
         javaMailSender.send(msg);
 
         request.setConfirmed(true);
@@ -42,8 +42,8 @@ public class RequestService {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(request.getTo().getEmail());
-        msg.setSubject("You have someone interested in you!");
-        msg.setText(request.getFrom().getName() + " : " + request.getMessage());
+        msg.setSubject("Your request declined!");
+        msg.setText(request.getFrom().getUsername() + " has accepted your request.");
         javaMailSender.send(msg);
 
         request.setConfirmed(false);
@@ -51,6 +51,13 @@ public class RequestService {
     }
 
     public Request createRequest(AppUser from, AppUser to, String message) {
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(to.getEmail());
+        msg.setSubject("You have someone interested in you!");
+        msg.setText(from.getUsername() + " : " + message);
+        javaMailSender.send(msg);
+
         Request request = new Request();
         request.setDate(Instant.now());
         request.setConfirmed(false);
