@@ -2,7 +2,9 @@ package tk.laurenfrost.users.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -35,11 +37,11 @@ public class AppUser {
 
 //    TODO: liked articles
 
-    @Lob
     private String bio;
 
     private String city;
 
+    @NotNull
     private Boolean privateContacts = false;
 
     private String avatarPath;

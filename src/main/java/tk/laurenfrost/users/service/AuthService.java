@@ -16,7 +16,6 @@ public class AuthService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     public AppUser findUserByUsername(String username) {
         return userRepository.findByUsernameIgnoreCase(username);
     }
