@@ -28,5 +28,5 @@ public class Request {
 
     private String message;
 
-    private boolean confirmed;
+    private Boolean confirmed = null;
 }

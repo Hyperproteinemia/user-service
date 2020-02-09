@@ -33,11 +33,11 @@ public class ContactService {
         return addContacts(contacts);
     }
 
-    public List<Contact> findExistingContacts(List<Contact> contacts) {
-        return contactRepository.findAllById(
-                contacts.stream().map(Contact::getId).collect(Collectors.toList())
-        );
-    }
+//    public List<Contact> findExistingContacts(List<Contact> contacts) {
+//        return contactRepository.findAllById(
+//                contacts.stream().map(Contact::getId).collect(Collectors.toList())
+//        );
+//    }
 
     public List<Contact> getUserContacts(AppUser user) {
         return contactRepository.findByUser(user);

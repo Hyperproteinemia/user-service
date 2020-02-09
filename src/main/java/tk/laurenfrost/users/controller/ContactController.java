@@ -44,9 +44,11 @@ public class ContactController {
         boolean approved = false;
         if (him.getPrivateContacts()) {
             Request request = requestService.getByUsers(you, him);
-            if (request != null && request.isConfirmed()) {
+            if (request != null && request.getConfirmed()) {
                 approved = true;
             }
+        } else {
+            approved = true;
         }
 
         if (him.equals(you)) approved = true;
@@ -63,6 +65,16 @@ public class ContactController {
     ResponseEntity<?> updateContacts(@RequestHeader(name = "username") String username, @RequestBody List<Contact> contacts) {
         // TODO: check that theese are yours
         contacts = contactService.updateContacts(contacts);
+        return ResponseEntity.ok(contacts);
+    }
+
+    @PostMapping("/user/contacts")
+    ResponseEntity<?> addContacts(@RequestHeader(name = "username") String username, @RequestBody List<Contact> contacts) {
+        AppUser user = authService.findUserByUsername(username);
+        for (Contact contact: contacts) {
+            contact.setUser(user);
+        }
+        contacts = contactService.addContacts(contacts);
         return ResponseEntity.ok(contacts);
     }
 
