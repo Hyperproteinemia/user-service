@@ -15,6 +15,21 @@ spring:
     password:
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hinfantry2
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+
 
 security:
   jwt:

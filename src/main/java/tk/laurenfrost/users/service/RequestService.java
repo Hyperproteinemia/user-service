@@ -1,5 +1,7 @@
 package tk.laurenfrost.users.service;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import tk.laurenfrost.users.entity.AppUser;
 import tk.laurenfrost.users.entity.Request;
@@ -10,12 +12,14 @@ import java.util.List;
 
 @Service
 public class RequestService {
+    private final JavaMailSender javaMailSender;
 
     final
     RequestRepository requestRepository;
 
-    public RequestService(RequestRepository requestRepository) {
+    public RequestService(RequestRepository requestRepository, JavaMailSender javaMailSender) {
         this.requestRepository = requestRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     public Request getByUsers(AppUser from, AppUser to) {
@@ -23,11 +27,25 @@ public class RequestService {
     }
 
     public Request acceptRequest(Request request) {
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(request.getFrom().getEmail());
+        msg.setSubject("Your request accepted!");
+        msg.setText(request.getFrom().getName() + " has accepted your request.");
+        javaMailSender.send(msg);
+
         request.setConfirmed(true);
         return requestRepository.save(request);
     }
 
     public Request declineRequest(Request request) {
+
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(request.getTo().getEmail());
+        msg.setSubject("You have someone interested in you!");
+        msg.setText(request.getFrom().getName() + " : " + request.getMessage());
+        javaMailSender.send(msg);
+
         request.setConfirmed(false);
         return requestRepository.save(request);
     }
