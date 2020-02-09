@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'mvn clean'
                 sh 'mv src/main/resources/application_example.yml src/main/resources/application.yml'
-                sh 'sed -i "s/password:.*/password: ${userpwd}/" src/main/resources/application.yml'
+                sh 'sed -i "s/password: db.*/password: ${userpwd}/" src/main/resources/application.yml'
                 sh 'sed -i "s/keypass:.*/keypass: ${userpwd}/" src/main/resources/application.yml'
             }
         }

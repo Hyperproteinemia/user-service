@@ -12,7 +12,7 @@ spring:
   datasource:
     url: jdbc:postgresql://laurenfrost.tk:5432/lyosha
     username: auth
-    password:
+    password: db
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
   mail:
